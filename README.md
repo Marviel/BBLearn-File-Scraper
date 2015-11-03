@@ -15,7 +15,11 @@ Thanks to the Mechanize gem, it was pretty easy.
   - mechanize
   - open-uri
 3. Navigate to the cloned directory and run:
-  - `ruby bblearn_scrape.rb username password \"directory/name/like/this\"`
+  - `ruby bblearn_scrape username password file_index_url "directory/name/like/this"`
+    -`password`: bblearn password
+    -`username`: bblearn username
+    -`file_index_url`: the bblearn url containing the files you wish to download
+    -`directory...`: the output directory
 
 
 

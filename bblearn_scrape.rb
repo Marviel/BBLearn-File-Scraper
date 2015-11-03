@@ -3,13 +3,13 @@ require 'mechanize'
 require 'open-uri'
 
 if ARGV.length != 4
-  $stderr.puts "USAGE: ./bblearn_scrape username password pdf_url \"directory/name/like/this\""
+  $stderr.puts "USAGE: ruby bblearn_scrape username password file_index_url \"directory/name/like/this\""
   exit(0)
 end
 
 USERNAME = ARGV[0]
 PASSWORD = ARGV[1]
-PDFURL = ARGV[2]
+FILEINDEXURL = ARGV[2]
 DESTDIR = ARGV[3]
 
 if(not File.directory?(DESTDIR))
@@ -68,5 +68,5 @@ def get_files(cookie_jar, regex, destdir, bb_pdf_index)
 end
 
 cookie_jar = bb_login(USERNAME, PASSWORD, "https://bblearn.utk.edu/")
-get_pdfs(cookie_jar, /bbcswebdav/, DESTDIR, PDFURL)
+get_pdfs(cookie_jar, /bbcswebdav/, DESTDIR, FILEINDEXURL)
 
