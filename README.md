@@ -1,4 +1,4 @@
-# BlackBoard Learn PDF Scraper Script
+# BlackBoard Learn File Scraper
 
 I got tired of having to manually download links on blackboard like this:
 
