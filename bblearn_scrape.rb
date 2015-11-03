@@ -17,7 +17,8 @@ if(not File.directory?(DESTDIR))
   exit(0)
 end
 
-
+# Given a Mechanize::Page, returns a dictionary of 
+# all forms on a page and their fields (for troubleshooting)
 def format_forms(page)
   ret = {}
   page.forms.each do |form|
@@ -48,7 +49,8 @@ def bb_login(username, password, bb_url)
   return ret_jar
 end
 
-def get_pdfs(cookie_jar, regex, destdir, bb_pdf_index)
+# Downloads and saves files at the given bb_pdf_index
+def get_files(cookie_jar, regex, destdir, bb_pdf_index)
   mech = Mechanize.new
   mech.cookie_jar = cookie_jar
 
@@ -57,12 +59,11 @@ def get_pdfs(cookie_jar, regex, destdir, bb_pdf_index)
 
   page.links_with(:href => regex).each do |link|
     puts "downloading: " + link.href
-    pdf = mech.get(link.href)
-    puts "---downloaded: " + pdf.filename
-
-    loc = destdir + pdf.filename
-    puts "saving to: " + loc
-    pdf.save(loc)
+    f = mech.get(link.href)
+    puts "---downloaded: " + f.filename
+    loc = destdir + f.filename
+    puts "---saving to: " + loc
+    f.save(loc)
   end
 end
 
